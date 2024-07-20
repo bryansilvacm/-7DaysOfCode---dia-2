@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VARIÁVEIS</title>
+
+    <style>
+      html,
+      body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      div {
+        width: 90%;
+        height: 90%;
+        margin: 3% auto;
+        color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      #botão,
+      #enviar2 {
+        width: 15%;
+        margin: 6px auto;
+        color: black;
+        background-color: #fbff00;
+        border-radius: 5rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+      #paragrafo,
+      #p2 {
+        display: none;
+        width: 50%;
+        border-radius: 5rem 0 5rem 0;
+        border: 2px solid #fbff00;
+        color: #f5f5f5;
+        font-size: 1.1rem;
+        padding: 1rem;
+        margin: 2rem auto;
+        text-align: center;
+      }
+      #div_pergunta2 {
+        width: 100%;
+        margin: 0 auto;
+        color: #f5f5f5;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+      }
+      #complemento {
+        margin: 0;
+        padding: 0;
+      }
+      label {
+        max-width: 15%;
+        text-align: center;
+        margin: 0 auto;
+      }
+      input {
+        width: 15%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="nome">Qual o seu nome?</label>
+      <input type="text" name="nome" id="nome" />
+
+      <label for="idade">Qual a sua idade?</label>
+      <input type="text" name="idade" id="idade" />
+
+      <label for="linguagem"
+        >Qual Linguagem de Programação você está estudando?</label
+      >
+      <input type="text" name="linguagem" id="linguagem" />
+
+      <button id="botão" onclick="mostrarmsg()">Enviar</button>
+      <p id="paragrafo"></p>
+      <div id="div_pergunta2">
+        <label for="pergunta" id="enuncidoPergunta"
+          >Você Gosta de estudar
+        </label>
+        <p id="complemento"></p>
+        <input type="text" name="pergunta" id="inputPergunta" />
+        <button id="enviar2" onclick="mostrarmsg2()">Enviar</button>
+      </div>
+      <p id="p2"></p>
+    </div>
+
+    <script>
+      function perguntar() {
+        let div_pergunta2 = document.getElementById("div_pergunta2");
+        let complemento = document.getElementById("complemento");
+        const linguagem = document.getElementById("linguagem").value;
+        complemento.innerHTML = `${linguagem}?, digite 1 para sim e 2 para não`;
+
+        if (
+          div_pergunta2.style.display === "none" ||
+          div_pergunta2.style.display === ""
+        ) {
+          div_pergunta2.style.display = "flex";
+        }
+      }
+      function mostrarmsg() {
+        const nome = document.getElementById("nome").value;
+        const idade = document.getElementById("idade").value;
+        const linguagem = document.getElementById("linguagem").value;
+
+        let p = document.getElementById("paragrafo");
+
+        if (p.style.display === "none" || p.style.display === "") {
+          p.style.display = "block";
+          p.innerHTML = `Olá, ${nome} você tem ${idade} anos e já está aprendendo ${linguagem}`;
+        } else {
+          alert("ERRO INESPERADO!");
+        }
+
+        perguntar();
+      }
+      function mostrarmsg2() {
+        let p2 = document.getElementById("p2");
+        let inputPergunta = document.getElementById("inputPergunta").value;
+
+        if (p2.style.display === "none" || p2.style.display === "") {
+          p2.style.display = "block";
+        }
+
+        if (inputPergunta == 1) {
+          p2.innerHTML =
+            "Muito bom! Continue estudando e você terá muito sucesso.";
+        } else {
+          p2.innerHTML =
+            "Ahh que pena... Já tentou aprender outras linguagens?";
+        }
+      }
+    </script>
+  </body>
+</html>
